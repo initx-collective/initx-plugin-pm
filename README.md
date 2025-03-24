@@ -1,19 +1,49 @@
-## initx-plugin-starter
+## @initx-plugin/pm
 
-`initx` plugin starter template.
+Project manager plugin for `initx`.
 
 ## Usage
 
 install the plugin globally
 
 ```bash
-npm i -g initx-plugin-starter
+npm i @initx-plugin/pm -g
 ```
 
-try the first command
+### Set project directory
 
 ```bash
-npx initx start
+npx initx pm add <path>
+```
+
+`path` can be a relative path or an absolute path.
+
+```bash
+# Add the current directory as a project directory
+npx initx pm add .
+# Add the parent directory as a project directory
+npx initx pm add ..
+# Add the directory D:/Projets as a project directory
+npx initx pm add D:/Projets
+```
+
+### Remove project directory
+
+```bash
+npx initx pm remove <path>
+```
+
+### Create a new project to the specified directory
+
+```bash
+npx initx pm create username/my-project
+```
+
+Equivalent to running
+
+```bash
+cd <path>
+git clone git@github.com:username/my-project.git
 ```
 
 ## Documentation

@@ -1,22 +1,24 @@
 {
-  "name": "initx-plugin-starter",
+  "name": "@initx-plugin/pm",
   "type": "module",
-  "version": "0.0.10",
-  "packageManager": "pnpm@9.15.7",
-  "description": "initx plugin starter template",
+  "version": "0.0.0",
+  "packageManager": "pnpm@10.6.5",
+  "description": "project manager plugin for initx",
   "author": "imba97",
   "license": "MIT",
-  "homepage": "https://github.com/initx-collective/initx-plugin-starter#readme",
+  "homepage": "https://github.com/initx-collective/initx-plugin-pm#readme",
   "repository": {
     "type": "git",
-    "url": "git@github.com:initx-collective/initx-plugin-starter.git"
+    "url": "git@github.com:initx-collective/initx-plugin-pm.git"
   },
   "bugs": {
-    "url": "https://github.com/initx-collective/initx-plugin-starter/issues"
+    "url": "https://github.com/initx-collective/initx-plugin-pm/issues"
   },
   "keywords": [
     "initx",
-    "initx-plugin"
+    "initx-plugin",
+    "project",
+    "manager"
   ],
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
@@ -28,27 +30,34 @@
     "stub": "unbuild --stub",
     "build": "unbuild",
     "release": "bumpp",
-    "lint": "eslint --cache --flag unstable_ts_config",
+    "lint": "eslint --cache",
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@initx-plugin/core": "^0.0.30",
-    "@initx-plugin/utils": "^0.0.30"
+    "@initx-plugin/core": "^0.0.31",
+    "@initx-plugin/utils": "^0.0.31",
+    "pathe": "^2.0.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.6.0",
-    "@types/node": "^22.13.9",
-    "bumpp": "^10.0.3",
-    "eslint": "^9.21.0",
-    "lint-staged": "^15.4.3",
-    "simple-git-hooks": "^2.11.1",
+    "@imba97/eslint-config": "^0.0.6",
+    "@types/node": "^22.13.13",
+    "bumpp": "^10.1.0",
+    "eslint": "^9.23.0",
+    "lint-staged": "^15.5.0",
+    "simple-git-hooks": "^2.12.1",
     "typescript": "^5.8.2",
     "unbuild": "^3.5.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "simple-git-hooks"
+    ]
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --cache --flag unstable_ts_config --fix"
+    "*": "eslint --cache --fix"
   }
 }
