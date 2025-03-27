@@ -2,7 +2,7 @@
   "name": "@initx-plugin/pm",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.7.0",
   "description": "project manager plugin for initx",
   "author": "imba97",
   "license": "MIT",
@@ -34,13 +34,13 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@initx-plugin/core": "^0.0.31",
-    "@initx-plugin/utils": "^0.0.31",
+    "@initx-plugin/core": "^0.0.34",
+    "@initx-plugin/utils": "^0.0.34",
     "pathe": "^2.0.3"
   },
   "devDependencies": {
     "@imba97/eslint-config": "^0.0.6",
-    "@types/node": "^22.13.13",
+    "@types/node": "^22.13.14",
     "bumpp": "^10.1.0",
     "eslint": "^9.23.0",
     "lint-staged": "^15.5.0",
