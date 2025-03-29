@@ -7,7 +7,7 @@ Project manager plugin for `initx`.
 install the plugin globally
 
 ```bash
-npm i @initx-plugin/pm -g
+npx initx plugin add pm
 ```
 
 ### Set project directory
