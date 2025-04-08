@@ -4,12 +4,15 @@ export enum Protocol {
 }
 
 export enum HandleType {
+  List = 'list',
   Add = 'add',
+  Use = 'use',
   Remove = 'remove',
   Create = 'create'
 }
 
 export interface Store {
   protocol: Protocol
-  directories: string[]
+  current: string
+  directories: Record<string, string>
 }

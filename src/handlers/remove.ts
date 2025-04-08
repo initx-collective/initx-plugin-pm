@@ -1,19 +1,18 @@
 import type { Store } from '../types'
 import { log } from '@initx-plugin/utils'
-import { getBasePath } from '../utils/path'
 
-export default function handleRemove(store: Store, path: string) {
-  const basePath = getBasePath(path)
-
-  const dirctory = new Set(store.directories)
-
-  if (!dirctory.has(basePath)) {
-    log.warn('Path does not exist')
+export function handleRemove(store: Store, name: string) {
+  if (!store.directories[name]) {
+    log.warn('No project found')
     return
   }
 
-  dirctory.delete(basePath)
-  store.directories = Array.from(dirctory)
+  if (store.current === name) {
+    store.current = 'default'
+  }
 
-  log.success(`Removed ${basePath}`)
+  const path = store.directories[name]
+  delete store.directories[name]
+
+  log.success(`Removed ${name}: ${path}`)
 }

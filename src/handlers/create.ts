@@ -1,15 +1,17 @@
 import type { Store } from '../types'
-import { c, inquirer, log } from '@initx-plugin/utils'
+import { c, log } from '@initx-plugin/utils'
 import pathe from 'pathe'
 import { Protocol } from '../types'
 
-export default async function handleCreate(
+export async function handleCreate(
   store: Store,
   project: string,
   as?: string
 ) {
-  if (store.directories.length === 0) {
-    log.error('No project directory available, use `pm add` to add one')
+  const directory = store.directories[store.current]
+
+  if (!directory) {
+    log.error(`No directory found for current: ${store.current}`)
     return
   }
 
@@ -20,16 +22,6 @@ export default async function handleCreate(
     log.error('Invalid project path')
     return
   }
-
-  let index = 0
-  if (store.directories.length > 1) {
-    index = await inquirer.select(
-      'Select a project directory',
-      store.directories
-    )
-  }
-
-  const projectDirctory = store.directories[index]
 
   let baseUrl: string
   switch (type) {
@@ -56,7 +48,7 @@ export default async function handleCreate(
   const mark = store.protocol === Protocol.HTTPS ? '/' : ':'
   const url = `${cloneType}${baseUrl}${mark}${user}/${projectName}.git`
   const localDirctory = as || projectName
-  const localDirctoryPath = pathe.resolve(projectDirctory, localDirctory)
+  const localDirctoryPath = pathe.resolve(directory, localDirctory)
 
   const result = await c(
     'git',
@@ -67,7 +59,7 @@ export default async function handleCreate(
     ],
     {
       nodeOptions: {
-        cwd: projectDirctory,
+        cwd: directory,
         stdio: 'inherit'
       }
     }

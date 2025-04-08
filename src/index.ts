@@ -2,15 +2,18 @@ import type { InitxContext, InitxMatcherRules } from '@initx-plugin/core'
 import type { Store } from './types'
 import { InitxPlugin } from '@initx-plugin/core'
 import { log } from '@initx-plugin/utils'
-import handleAdd from './handlers/add'
-import handleCreate from './handlers/create'
-import handleRemove from './handlers/remove'
+import { handleAdd } from './handlers/add'
+import { handleCreate } from './handlers/create'
+import { handleList } from './handlers/list'
+import { handleRemove } from './handlers/remove'
+import { handleUse } from './handlers/use'
 import { HandleType, Protocol } from './types'
 
 export default class ProjectManagerPlugin extends InitxPlugin<Store> {
   defaultStore: Store = {
     protocol: Protocol.SSH,
-    directories: []
+    current: 'default',
+    directories: {}
   }
 
   rules: InitxMatcherRules = [
@@ -23,15 +26,26 @@ export default class ProjectManagerPlugin extends InitxPlugin<Store> {
 
   async handle(context: InitxContext<Store>, type: HandleType, ...others: string[]) {
     switch (type) {
-      case HandleType.Add: {
-        const [path] = others
+      case HandleType.List: {
+        handleList(context.store)
+        break
+      }
 
-        if (!path) {
+      case HandleType.Add: {
+        const [nameOrPath, path] = others
+
+        if (!nameOrPath) {
           log.error('No path provided')
           return
         }
 
-        handleAdd(context.store, path)
+        handleAdd(context.store, nameOrPath, path)
+        break
+      }
+
+      case HandleType.Use: {
+        const [name = 'default'] = others
+        handleUse(context.store, name)
         break
       }
 

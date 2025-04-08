@@ -34,12 +34,14 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "columnify": "^1.6.0",
     "pathe": "^2.0.3"
   },
   "devDependencies": {
     "@imba97/eslint-config": "^0.0.6",
     "@initx-plugin/core": "*",
     "@initx-plugin/utils": "*",
+    "@types/columnify": "^1.5.4",
     "@types/node": "^22.13.14",
     "bumpp": "^10.1.0",
     "eslint": "^9.23.0",

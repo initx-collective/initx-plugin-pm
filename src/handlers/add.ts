@@ -2,14 +2,32 @@ import type { Store } from '../types'
 import { log } from '@initx-plugin/utils'
 import { getBasePath } from '../utils/path'
 
-export default function handleAdd(store: Store, path: string) {
-  const basePath = getBasePath(path)
+export function handleAdd(
+  store: Store,
+  nameOrPath: string,
+  path?: string
+) {
+  let certainedName
+  let certainedPath
 
-  if (store.directories.includes(basePath)) {
+  if (path) {
+    certainedName = nameOrPath
+    certainedPath = path
+  }
+  else {
+    certainedName = 'default'
+    certainedPath = nameOrPath
+  }
+
+  const basePath = getBasePath(certainedPath)
+
+  const directory = store.directories?.[certainedName]
+
+  if (basePath === directory) {
     log.warn('Path already exists')
     return
   }
 
-  store.directories.push(basePath)
+  store.directories[certainedName] = basePath
   log.success(`Added ${basePath}`)
 }
