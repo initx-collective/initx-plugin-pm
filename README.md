@@ -53,14 +53,14 @@ npx initx pm remove <name>
 ### Create a new project to the specified directory
 
 ```bash
-npx initx pm create name/repo <as?>
+npx initx pm create user/repo <as?>
 ```
 
 Equivalent to run
 
 ```bash
 cd <path>
-git clone git@github.com:username/my-project.git as-name
+git clone git@github.com:user/repo.git as-name
 ```
 
 ## Documentation
