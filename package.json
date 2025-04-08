@@ -33,6 +33,10 @@
     "lint": "eslint --cache",
     "prepare": "simple-git-hooks"
   },
+  "peerDependencies": {
+    "@initx-plugin/core": "*",
+    "@initx-plugin/utils": "*"
+  },
   "dependencies": {
     "columnify": "^1.6.0",
     "pathe": "^2.0.3"
