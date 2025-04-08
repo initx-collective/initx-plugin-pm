@@ -13,8 +13,10 @@ npx initx plugin add pm
 ### Set project directory
 
 ```bash
-npx initx pm add <path>
+npx initx pm add <name?> <path>
 ```
+
+`name` is optional. If it is not provided, it defaults to `default`.
 
 `path` can be a relative path or an absolute path.
 
@@ -24,26 +26,41 @@ npx initx pm add .
 # Add the parent directory as a project directory
 npx initx pm add ..
 # Add the directory D:/Projets as a project directory
-npx initx pm add D:/Projets
+npx initx pm add D:/projets
+# Add the directory D:/my-projects with name
+npx initx pm add frontend D:/projects-front
+npx initx pm add backend D:/projects-backend
+```
+
+### List project directories
+
+```bash
+npx initx pm list
+```
+
+### Use project directory
+
+```bash
+npx initx pm use <name>
 ```
 
 ### Remove project directory
 
 ```bash
-npx initx pm remove <path>
+npx initx pm remove <name>
 ```
 
 ### Create a new project to the specified directory
 
 ```bash
-npx initx pm create username/my-project
+npx initx pm create name/repo <as?>
 ```
 
-Equivalent to running
+Equivalent to run
 
 ```bash
 cd <path>
-git clone git@github.com:username/my-project.git
+git clone git@github.com:username/my-project.git as-name
 ```
 
 ## Documentation
